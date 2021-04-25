@@ -10,4 +10,4 @@ Port: 3306
 
 Username: admin
 
-Password: @lrigh!y
+Password: &lrigh!y
