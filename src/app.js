@@ -402,4 +402,7 @@ app.get('/logout',(req,res)=>{
     res.redirect('/');
 });
 
-app.listen(8080);
+//!process.env.PORT has to be included
+app.listen(process.env.PORT || 8080, function () {
+    console.log("Listening on server port: 8080");
+});
