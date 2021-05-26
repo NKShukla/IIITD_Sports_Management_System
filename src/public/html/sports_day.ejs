@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <style>
+    body {
+        /* background-image: url('../assets/images/collegeImage.png'); */
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%; 
+    }
+
+    </style>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+    <title>Hostel Index</title>
+    <!-- Bootstrap CSS -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <meta name="google-signin-client_id" content="971963040388-6o14aitt8ii30sncr8fkudmkte6j55en.apps.googleusercontent.com">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+   <script>
+       function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+        }
+
+        /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+        }
+        function addRows(details){
+            // document.getElementById('guardTable').innerHTML=`<thead>
+            //                           <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="bootstrap-data-table" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Project ID: activate to sort column descending" style="width: 53px;">ID</th><th class="sorting" tabindex="0" aria-controls="bootstrap-data-table" rowspan="1" colspan="1" aria-label="Project Name: activate to sort column ascending" style="width: 94px;">Name</th><th class="sorting" tabindex="0" aria-controls="bootstrap-data-table" rowspan="1" colspan="1" aria-label="Project Description: activate to sort column ascending" style="width: 281px;">Ph. Number</th></tr>
+            //                         </thead>`;
+                                    
+            for (let i=0;i<details.entry.length;i++) {
+                var table = document.getElementById("table");
+                var row = table.insertRow(i+1);
+                var cell0 = row.insertCell(0);
+                var cell1 = row.insertCell(1);
+                var cell2 = row.insertCell(2);
+                if(details.entry[i].slot== null){
+                    details.entry[i].slot="All";
+                }
+                if(details.entry[i].sport== null){
+                    details.entry[i].sport="All";
+                }
+                if(details.entry[i].count== null){
+                    details.entry[i].count="All";
+                }
+                cell0.innerHTML = details.entry[i].slot;
+                cell1.innerHTML = details.entry[i].sport;
+                cell2.innerHTML = details.entry[i].count;
+                
+            }                        
+        }
+        function filterResults() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/sportsDay');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function() {
+                details=JSON.parse(xhr.responseText);
+                addRows(details);
+            };
+            xhr.send();
+        }
+        window.onload = filterResults;
+    </script>
+</head>
+    
+
+<body>
+    <!--msb: main sidebar-->
+    <aside id="left-panel" class="left-panel">
+        <nav class="navbar navbar-expand-sm navbar-default">
+
+            <div class="navbar-header">
+                <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="true" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button> -->
+                <a class="navbar-brand" href="./"><img src="../assets/images/logo.png" alt="Logo"></a>
+            </div>
+
+            <div id="main-menu" class="main-menu navbar-collapse collapse show" >
+                <ul class="nav navbar-nav">
+                    <!-- <li class="active">
+                        <a href="/home"> <i class="menu-icon fa fa-dashboard ti-home"></i>Home </a>
+                    </li> -->
+                    <li>
+                        <a href="/profile"> <i class="menu-icon fa fa-user"></i>Profile </a>
+                    </li>
+                    <li>
+                        <a href="/guardDetails"> <i class="menu-icon fa fa-address-card-o"></i>Guard Details </a>
+                    </li>
+                    <li>
+                        <a href="/tournamentDetails"> <i class="menu-icon fa fa-user"></i>Tournament Details </a>
+                    </li>
+                    <li>
+                        <a href="/sportsDay"> <i class="menu-icon fa fa-calendar-check-o" aria-hidden="true"></i>Check-In Details </a>
+                    </li>
+                    <li>
+                        <a href="/logout"> <i class="menu-icon fa fa-sign-out"></i>Logout </a>
+                    </li>
+                    
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </aside>
+    <div class="main-content">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">Check-In Details</li>
+            </ol>
+        </nav>
+        <div class="container pb-5">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="tab-content" style="width: 900px" id="v-pills-tabContent">
+      <div class="tab-pane fade show active" id="new_requests_div" role="tabpanel" aria-labelledby="v-pills-new-tab"><h2 class="headingOption">Check-In Details</h2>
+                    <form class="requestHostel">  
+                        <div class="content mt-3" id="displaySearch">
+                            <div class="animated fadeIn">
+                                <div class="row">
+                
+                                <div style="align-content: center;" class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-body" >
+                                  <div style="align-content: center;" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="bootstrap-data-table_length"><label>Show <select name="bootstrap-data-table_length" aria-controls="bootstrap-data-table" class="form-control form-control-sm"><option value="10">10</option><option value="20">20</option><option value="50">50</option><option value="-1">All</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"></div></div><div class="row"><div class="col-sm-12"><table id="table" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="bootstrap-data-table_info">
+                                    <thead>
+                                      <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="bootstrap-data-table" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Project ID: activate to sort column descending" style="width: 53px;">Slot</th><th class="sorting" tabindex="0" aria-controls="bootstrap-data-table" rowspan="1" colspan="1" aria-label="Project Name: activate to sort column ascending" style="width: 94px;">Sport</th><th class="sorting" tabindex="0" aria-controls="bootstrap-data-table" rowspan="1" colspan="1" aria-label="Project Description: activate to sort column ascending" style="width: 281px;">Entries</th></tr>
+                                    </thead>
+                                  </table></div></div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="bootstrap-data-table_info" role="status" aria-live="polite">Showing 1 to 10 of 27 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="bootstrap-data-table_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="bootstrap-data-table_previous"><a href="#" aria-controls="bootstrap-data-table" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="bootstrap-data-table" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="bootstrap-data-table" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="bootstrap-data-table" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item next" id="bootstrap-data-table_next"><a href="#" aria-controls="bootstrap-data-table" data-dt-idx="4" tabindex="0" class="page-link">Next</a></li></ul></div></div></div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                
+                
+                                </div>
+                            </div><!-- .animated -->
+                        </div>
+                    </form></div>
+        </div>
+    </div>
+                    
+                    <br><br>
+    
+                  
+            </div>
+        </div>   
+    </div>
+      
+    
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-115498308-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-115498308-1');
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+<iframe id="ssIFrame_google" sandbox="allow-scripts allow-same-origin" aria-hidden="true" frame-border="0" src="https://accounts.google.com/o/oauth2/iframe#origin=https%3A%2F%2Fwww.iiitd.edu.in&amp;rpcToken=227054690.6788318" style="position: absolute; width: 1px; height: 1px; inset: -9999px; display: none;"></iframe>
+</body>
+
+</html>
