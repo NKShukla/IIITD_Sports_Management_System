@@ -4,6 +4,7 @@ const favicon= require('serve-favicon');
 const session= require('express-session');
 const request = require('request');
 var path = require('path');
+const mysql=require('mysql');
 const router  = express.Router();
 
 var connection = mysql.createConnection({
@@ -16,7 +17,7 @@ var connection = mysql.createConnection({
 
 var app = express();
 app.use(express.static(__dirname+"/public"));
-app.set('views', './public/html')
+app.set('views',__dirname + '/public/html')
 app.set('view engine','ejs');
 // app.use(expressEjsLayout);
 app.use(session({
