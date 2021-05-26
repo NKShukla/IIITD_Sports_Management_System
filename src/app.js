@@ -1,7 +1,8 @@
-var mysql = require('mysql');
-var express = require('express');
-var session = require('express-session');
-var bodyParser = require('body-parser');
+const express= require('express');
+const bodyParser= require('body-parser');
+const favicon= require('serve-favicon');
+const session= require('express-session');
+const request = require('request');
 var path = require('path');
 const router  = express.Router();
 
