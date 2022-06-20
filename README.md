@@ -3,8 +3,7 @@
         <a href='https://sports-web-app.herokuapp.com'>Live Demo</a>
         <a> | </a>
         <a href='https://docs.google.com/document/d/1sMKhVDJFwjJc1q-x7H20YCM_yGGDHE2jECnCJ6yrNUY/edit?usp=sharing'>Detailed Report</a>
-        <a> | </a>
-        <a href='https://docs.google.com/spreadsheets/d/1iUYN3J3ugQRVq7bsCEjrkJ0vBcdLVH0966OA4mic1as/edit?usp=sharing'>Raw Data</a>
+        <a>
     </h4>
     <hr>
 
@@ -18,8 +17,7 @@ Sports management in a college is an essential task. It is often difficult to co
 
 ## :white_circle:Stakeholders
 
-* Sports 
-* Council
+* Sports-Council
 * Student
 * Faculty
 * Guard
@@ -65,7 +63,6 @@ Since this was our 4th semester DBMS project and we were allotted limited time, 
 :loudspeaker: Note that the GUI is not completely finished and doesn't fully complement our database. It can be further developed to have other operations that the queries allow.
 
 <hr>
-
 
 
 
